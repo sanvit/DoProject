@@ -10,6 +10,7 @@ export default function ProjectInfo({
   info,
   userStatus,
   setCancleFlag,
+  setApplyFlag,
   commentCount,
 }) {
   const [clickFlag, setClickFlag] = useState(0);
@@ -56,6 +57,7 @@ export default function ProjectInfo({
       },
     })
       .then((res) => {
+        setApplyFlag(1);
         console.log(res);
       })
       .catch((e) => console.log(e));
@@ -119,10 +121,10 @@ export default function ProjectInfo({
 
   useEffect(() => {
     if (loginState !== null) {
-      console.log(loginState);
       checkLike();
     }
   }, []);
+
   return (
     <>
       <div className="project_info">
@@ -130,7 +132,7 @@ export default function ProjectInfo({
           <Icon
             icon={likeData[clickFlag].icon}
             color={likeData[clickFlag].color}
-            height="25"
+            fontSize="1.5rem"
             onClick={(e) => {
               if (clickFlag === 0) onClickLike(e);
               else onClickUnlike(e);
@@ -175,6 +177,11 @@ export default function ProjectInfo({
       {userStatus === "applying" && (
         <div className="project-cancle_btn" onClick={(e) => applyCancel(e)}>
           신청 취소하기
+        </div>
+      )}
+      {userStatus === "participating" && (
+        <div className="project-cancle_btn" onClick={(e) => deleteMember(e)}>
+          프로젝트에서 나가기
         </div>
       )}
     </>
