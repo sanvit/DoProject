@@ -397,7 +397,7 @@ export const updateList = async (request: Request, response: Response) => {
             element.profileId,
             Number(projectId),
             project!.title,
-            inputState
+            String(inputState)
           );
         });
       }
@@ -407,7 +407,7 @@ export const updateList = async (request: Request, response: Response) => {
       })
       if (listMember !== null) {
         listMember!.forEach((element) => {
-          feed.changeProjectStatus(element.profileId, Number(projectId), project!.title, String(state));
+          feed.changeProjectStatus(element.profileId, Number(projectId), project!.title, String(inputState));
         })
       }
     }
@@ -1045,7 +1045,7 @@ export const addMember = async (request: Request, response: Response) => {
             element.profileId,
             Number(projectId),
             project!.title,
-            inputState
+            String(inputState)
           );
         });
       }
@@ -1326,7 +1326,7 @@ export const deletePosition = async (request: Request, response: Response) => {
             element.profileId,
             Number(projectId),
             project!.title,
-            state
+            String(state)
           );
         });
       }
